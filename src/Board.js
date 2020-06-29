@@ -24,7 +24,67 @@ class Board extends Component {
       ["two", "five", "eight"],
       ["zero", "four", "eight"],
       ["two", "four", "six"]
-    ]
+    ],
+    keeperOne: 0,
+    keeperTwo: 0
+  }
+
+  //maps data from object to array
+  mapPlayertoArray = (player) => {
+    //map out to another array the grid element names
+    const plOneGridEl = player.map((el) => {
+      return el.gridID
+    })
+    return plOneGridEl
+  }
+
+  //player one win algorithm
+  checkWinnerPlayerOne = (waysToWin, plOneGridEl) => {
+    let { keeperOne } = this.state
+    waysToWin.forEach((permutation) => {
+      if (
+        plOneGridEl.includes(permutation[0]) &&
+        plOneGridEl.includes(permutation[1]) &&
+        plOneGridEl.includes(permutation[2])
+      ) {
+        //to control eventual return
+        this.setState({ keeperOne: keeperOne + 1 }, () => {
+          console.log("x wins")
+        })
+      }
+    })
+    if (this.state.keeperOne) {
+      return true
+    }
+    return false
+  }
+
+  //player two win algorithm
+  checkWinnerPlayerTwo = (waysToWin, plOneGridEl) => {
+    let { keeperTwo } = this.state
+    waysToWin.forEach((permutation) => {
+      if (
+        plOneGridEl.includes(permutation[0]) &&
+        plOneGridEl.includes(permutation[1]) &&
+        plOneGridEl.includes(permutation[2])
+      ) {
+        //to control evental return
+        this.setState({ keeperTwo: keeperTwo + 1 }, () => {
+          console.log("o wins")
+        })
+      }
+    })
+    if (this.state.keeperTwo) {
+      return true
+    }
+    return false
+  }
+
+  //the tie/draw algorithm
+  checkTie = (plOne, plTwo) => {
+    if (plOne === false && plTwo === false) {
+      console.log("draw")
+    }
   }
 
   handleClick = (e) => {
@@ -43,23 +103,23 @@ class Board extends Component {
         [e.target.id]: { value: deck[clickCount], clicked: true }
       },
       (e) => {
-        // console.log(clickCount)
-        // console.log(this.state)
-
         // map player one to array
-        let jb = mapPlayertoArray(this.state.playerOne)
-        //check if player one wins and store its return value
-        let returnPlayerOne = checkWinnerPlayerOne(this.state.waysToWin, jb)
-        // map player two to array
-        let show = mapPlayertoArray(this.state.playerTwo)
-        //check if player two wins and store its return value
-        let returnPlayerTwo = checkWinnerPlayerTwo(this.state.waysToWin, show)
+        let jb = this.mapPlayertoArray(this.state.playerOne)
+        let show = this.mapPlayertoArray(this.state.playerTwo)
 
-        //
-        //check for ties
-        // console.log(returnPlayerTwo)
-        checkTie(returnPlayerOne, returnPlayerTwo)
-        console.log(checkWinnerPlayerOne(this.state.waysToWin, jb))
+        //check if player one/two wins and store their return value
+        let returnPlayerOne = this.checkWinnerPlayerOne(
+          this.state.waysToWin,
+          jb
+        )
+        let returnPlayerTwo = this.checkWinnerPlayerTwo(
+          this.state.waysToWin,
+          show
+        )
+
+        //check for tie
+        if (this.state.clickCount === 9)
+          this.checkTie(returnPlayerOne, returnPlayerTwo)
       }
     )
 
@@ -73,54 +133,8 @@ class Board extends Component {
       const playerTwo = [...this.state.playerTwo, playerData]
       this.setState({ playerTwo: playerTwo })
     }
-
-    //player one winning algo
-    function mapPlayertoArray(player) {
-      //map out to another array the grid element names
-      const plOneGridEl = player.map((el) => {
-        return el.gridID
-      })
-      return plOneGridEl
-    }
-
-    function checkWinnerPlayerOne(waysToWin, plOneGridEl) {
-      waysToWin.forEach((perm) => {
-        if (
-          plOneGridEl.includes(perm[0]) &&
-          plOneGridEl.includes(perm[1]) &&
-          plOneGridEl.includes(perm[2])
-        ) {
-          console.log("x wins")
-          return true
-        }
-        return false
-      })
-    }
-    function checkWinnerPlayerTwo(waysToWin, plOneGridEl) {
-      waysToWin.forEach((perm) => {
-        if (
-          plOneGridEl.includes(perm[0]) &&
-          plOneGridEl.includes(perm[1]) &&
-          plOneGridEl.includes(perm[2])
-        ) {
-          console.log("o wins")
-          return true
-        }
-        return false
-      })
-    }
-    function checkTie(plOne, plTwo) {
-      // console.log(waysToWin)
-      if (plOne === false && plTwo === false) {
-        console.log("draw")
-      }
-    }
   }
   render() {
-    // destructuring
-    // let { deck } = this.props
-    // let { clickCount } = this.state
-
     return (
       <div>
         <div className="grid-container">
