@@ -19,6 +19,7 @@ class Board extends Component {
     let { deck } = this.props
     let { clickCount } = this.state
 
+    //disables boxes after first click
     if (this.state[e.target.id].clicked) {
       return
     }
@@ -30,8 +31,10 @@ class Board extends Component {
         [e.target.id]: { value: deck[clickCount], clicked: true }
       },
       (e) => {
-        console.log(this.state.clickCount)
+        // console.log(clickCount)
+        console.log(clickCount)
         console.log(this.state)
+        console.log(deck)
       }
     )
   }
