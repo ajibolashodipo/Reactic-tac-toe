@@ -101,6 +101,25 @@ class Board extends Component {
     }
   }
 
+  clearBoard = () => {
+    this.setState({
+      zero: { value: null, clicked: false },
+      one: { value: null, clicked: false },
+      two: { value: null, clicked: false },
+      three: { value: null, clicked: false },
+      four: { value: null, clicked: false },
+      five: { value: null, clicked: false },
+      six: { value: null, clicked: false },
+      seven: { value: null, clicked: false },
+      eight: { value: null, clicked: false },
+      clickCount: 0,
+      playerOne: [],
+      playerTwo: [],
+      keeperOne: 0,
+      keeperTwo: 0
+    })
+  }
+
   handleClick = (e) => {
     let { deck } = this.props
     let { clickCount } = this.state
@@ -186,6 +205,7 @@ class Board extends Component {
             {this.state.eight.value}
           </div>
         </div>
+        <button onClick={this.clearBoard}>Clear Board</button>
       </div>
     )
   }

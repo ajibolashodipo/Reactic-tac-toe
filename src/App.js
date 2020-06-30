@@ -9,6 +9,7 @@ class App extends Component {
     playerOneChar: "x",
     playerTwoChar: "o",
     deck: ["x", "o", "x", "o", "x", "o", "x", "o", "x"],
+    
     playerOneTally:
       JSON.parse(window.localStorage.getItem("playerOneLocalStorage")) || 0,
     playerTwoTally:
@@ -92,6 +93,11 @@ class App extends Component {
       )
     }
   }
+
+  clearRecord = () => {
+    window.localStorage.clear()
+    this.setState({ playerOneTally: 0, playerTwoTally: 0, playerDrawTally: 0 })
+  }
   render() {
     return (
       <div>
@@ -107,7 +113,7 @@ class App extends Component {
           state={this.state}
           updateScoreBoard={this.updateScoreBoard}
         />
-        <ScoreBoard state={this.state} />
+        <ScoreBoard state={this.state} clearRecord={this.clearRecord} />
       </div>
     )
   }

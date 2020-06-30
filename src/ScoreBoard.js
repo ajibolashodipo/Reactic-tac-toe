@@ -22,6 +22,7 @@ class ScoreBoard extends Component {
             Player 2 ({playerTwoChar}): {playerTwoTally}{" "}
           </p>
         </div>
+        <button onClick={this.props.clearRecord}>Clear Records</button>
       </div>
     )
   }
