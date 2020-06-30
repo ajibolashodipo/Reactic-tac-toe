@@ -6,8 +6,8 @@ import ScoreBoard from "./ScoreBoard"
 
 class App extends Component {
   state = {
-    playerOneChar: "",
-    playerTwoChar: "",
+    playerOneChar: "x",
+    playerTwoChar: "o",
     deck: ["x", "o", "x", "o", "x", "o", "x", "o", "x"]
   }
 
@@ -16,7 +16,6 @@ class App extends Component {
     console.log(data[extractKey[1]])
     this.setState(
       {
-        ...this.state,
         [extractKey[0]]: data[extractKey[0]],
         [extractKey[1]]: data[extractKey[1]]
       },
@@ -47,6 +46,7 @@ class App extends Component {
         <PlayerSelect
           registerPlayer={this.registerPlayer}
           loadDeck={this.loadDeck}
+          state={this.state}
         />
 
         <Board deck={this.state.deck} />
