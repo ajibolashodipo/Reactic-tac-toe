@@ -2,8 +2,8 @@ import React, { Component } from "react"
 
 class PlayerSelect extends Component {
   state = {
-    playerOneChar: "",
-    playerTwoChar: ""
+    playerOneChar: this.props.state.playerOneChar,
+    playerTwoChar: this.props.state.playerTwoChar
   }
 
   handleChange = (e) => {
@@ -14,12 +14,8 @@ class PlayerSelect extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.registerPlayer(this.state)
     this.props.loadDeck(this.state.playerOneChar, this.state.playerTwoChar)
-    this.setState({
-      playerOneChar: "",
-      playerTwoChar: ""
-    })
+    this.props.registerPlayer(this.state)
   }
   render() {
     return (
