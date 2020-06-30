@@ -41,6 +41,7 @@ class Board extends Component {
   //player one win algorithm
   checkWinnerPlayerOne = (waysToWin, plOneGridEl) => {
     const { playerOneChar } = this.props.state
+    // const { updateScoreboard } = this.props
     for (const permutation of waysToWin) {
       if (
         plOneGridEl.includes(permutation[0]) &&
@@ -48,10 +49,15 @@ class Board extends Component {
         plOneGridEl.includes(permutation[2])
       ) {
         //to control eventual return
-        this.setState((currentState) => ({
-          keeperOne: currentState.keeperOne + 1
-        }))
-        console.log(`${playerOneChar} wins`)
+        this.setState(
+          (currentState) => ({
+            keeperOne: currentState.keeperOne + 1
+          }),
+          () => {
+            this.props.updateScoreBoard(playerOneChar)
+            console.log(`${playerOneChar} wins`)
+          }
+        )
         return true
       }
     }
@@ -62,6 +68,7 @@ class Board extends Component {
   //player two win algorithm
   checkWinnerPlayerTwo = (waysToWin, plOneGridEl) => {
     const { playerTwoChar } = this.props.state
+    // const { updateScoreboard } = this.props
     for (const permutation of waysToWin) {
       if (
         plOneGridEl.includes(permutation[0]) &&
@@ -69,10 +76,15 @@ class Board extends Component {
         plOneGridEl.includes(permutation[2])
       ) {
         //to control evental return
-        this.setState((currentState) => ({
-          keeperTwo: currentState.keeperTwo + 1
-        }))
-        console.log(`${playerTwoChar} wins`)
+        this.setState(
+          (currentState) => ({
+            keeperTwo: currentState.keeperTwo + 1
+          }),
+          () => {
+            this.props.updateScoreBoard(playerTwoChar)
+            console.log(`${playerTwoChar} wins`)
+          }
+        )
         return true
       }
     }
@@ -82,7 +94,9 @@ class Board extends Component {
 
   //the tie/draw algorithm
   checkTie = (plOne, plTwo) => {
+    // const { updateScoreboard } = this.props
     if (plOne === false && plTwo === false) {
+      this.props.updateScoreBoard("DRAW")
       console.log("draw")
     }
   }
