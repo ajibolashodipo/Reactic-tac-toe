@@ -49,7 +49,7 @@ class App extends Component {
           state={this.state}
         />
 
-        <Board deck={this.state.deck} />
+        <Board deck={this.state.deck} state={this.state} />
         <ScoreBoard />
       </div>
     )

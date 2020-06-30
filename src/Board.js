@@ -40,43 +40,43 @@ class Board extends Component {
 
   //player one win algorithm
   checkWinnerPlayerOne = (waysToWin, plOneGridEl) => {
-    let { keeperOne } = this.state
-    waysToWin.forEach((permutation) => {
+    const { playerOneChar } = this.props.state
+    for (const permutation of waysToWin) {
       if (
         plOneGridEl.includes(permutation[0]) &&
         plOneGridEl.includes(permutation[1]) &&
         plOneGridEl.includes(permutation[2])
       ) {
         //to control eventual return
-        this.setState({ keeperOne: keeperOne + 1 }, () => {
-          console.log("x wins")
-        })
+        this.setState((currentState) => ({
+          keeperOne: currentState.keeperOne + 1
+        }))
+        console.log(`${playerOneChar} wins`)
+        return true
       }
-    })
-    if (this.state.keeperOne) {
-      return true
     }
+
     return false
   }
 
   //player two win algorithm
   checkWinnerPlayerTwo = (waysToWin, plOneGridEl) => {
-    let { keeperTwo } = this.state
-    waysToWin.forEach((permutation) => {
+    const { playerTwoChar } = this.props.state
+    for (const permutation of waysToWin) {
       if (
         plOneGridEl.includes(permutation[0]) &&
         plOneGridEl.includes(permutation[1]) &&
         plOneGridEl.includes(permutation[2])
       ) {
         //to control evental return
-        this.setState({ keeperTwo: keeperTwo + 1 }, () => {
-          console.log("o wins")
-        })
+        this.setState((currentState) => ({
+          keeperTwo: currentState.keeperTwo + 1
+        }))
+        console.log(`${playerTwoChar} wins`)
+        return true
       }
-    })
-    if (this.state.keeperTwo) {
-      return true
     }
+
     return false
   }
 
@@ -117,8 +117,14 @@ class Board extends Component {
           show
         )
 
+        console.log(returnPlayerOne, returnPlayerTwo)
+
         //check for tie
-        if (this.state.clickCount === 9)
+        if (
+          this.state.clickCount === 9 &&
+          returnPlayerOne === false &&
+          returnPlayerTwo === false
+        )
           this.checkTie(returnPlayerOne, returnPlayerTwo)
       }
     )
