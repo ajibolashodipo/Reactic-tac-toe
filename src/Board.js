@@ -15,16 +15,16 @@ class Board extends Component {
     clickCount: 0,
     playerOne: [],
     playerTwo: [],
-    waysToWin: [
-      ["zero", "one", "two"],
-      ["three", "four", "five"],
-      ["six", "seven", "eight"],
-      ["zero", "three", "six"],
-      ["one", "four", "seven"],
-      ["two", "five", "eight"],
-      ["zero", "four", "eight"],
-      ["two", "four", "six"]
-    ],
+    // waysToWin: [
+    //   ["zero", "one", "two"],
+    //   ["three", "four", "five"],
+    //   ["six", "seven", "eight"],
+    //   ["zero", "three", "six"],
+    //   ["one", "four", "seven"],
+    //   ["two", "five", "eight"],
+    //   ["zero", "four", "eight"],
+    //   ["two", "four", "six"]
+    // ],
     keeperOne: 0,
     keeperTwo: 0
   }
@@ -101,31 +101,12 @@ class Board extends Component {
     }
   }
 
-  clearBoard = () => {
-    this.setState({
-      zero: { value: null, clicked: false },
-      one: { value: null, clicked: false },
-      two: { value: null, clicked: false },
-      three: { value: null, clicked: false },
-      four: { value: null, clicked: false },
-      five: { value: null, clicked: false },
-      six: { value: null, clicked: false },
-      seven: { value: null, clicked: false },
-      eight: { value: null, clicked: false },
-      clickCount: 0,
-      playerOne: [],
-      playerTwo: [],
-      keeperOne: 0,
-      keeperTwo: 0
-    })
-  }
-
   handleClick = (e) => {
     let { deck } = this.props
-    let { clickCount } = this.state
+    let { clickCount } = this.props.state
 
     //disables boxes after first click
-    if (this.state[e.target.id].clicked) {
+    if (this.props.state[e.target.id].clicked) {
       return
     }
 
@@ -137,16 +118,16 @@ class Board extends Component {
       },
       (e) => {
         // map player one to array
-        let jb = this.mapPlayertoArray(this.state.playerOne)
-        let show = this.mapPlayertoArray(this.state.playerTwo)
+        let jb = this.mapPlayertoArray(this.props.state.playerOne)
+        let show = this.mapPlayertoArray(this.props.state.playerTwo)
 
         //check if player one/two wins and store their return value
         let returnPlayerOne = this.checkWinnerPlayerOne(
-          this.state.waysToWin,
+          this.props.state.waysToWin,
           jb
         )
         let returnPlayerTwo = this.checkWinnerPlayerTwo(
-          this.state.waysToWin,
+          this.props.state.waysToWin,
           show
         )
 
@@ -177,35 +158,71 @@ class Board extends Component {
     return (
       <div>
         <div className="grid-container">
-          <div id="zero" className="item item-0" onClick={this.handleClick}>
-            {this.state.zero.value}
+          <div
+            id="zero"
+            className="item item-0"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.zero.value}
           </div>
-          <div id="one" className="item item-1" onClick={this.handleClick}>
-            {this.state.one.value}
+          <div
+            id="one"
+            className="item item-1"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.one.value}
           </div>
-          <div id="two" className="item item-2" onClick={this.handleClick}>
-            {this.state.two.value}
+          <div
+            id="two"
+            className="item item-2"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.two.value}
           </div>
-          <div id="three" className="item item-3" onClick={this.handleClick}>
-            {this.state.three.value}
+          <div
+            id="three"
+            className="item item-3"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.three.value}
           </div>
-          <div id="four" className="item item-4" onClick={this.handleClick}>
-            {this.state.four.value}
+          <div
+            id="four"
+            className="item item-4"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.four.value}
           </div>
-          <div id="five" className="item item-5" onClick={this.handleClick}>
-            {this.state.five.value}
+          <div
+            id="five"
+            className="item item-5"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.five.value}
           </div>
-          <div id="six" className="item item-6" onClick={this.handleClick}>
-            {this.state.six.value}
+          <div
+            id="six"
+            className="item item-6"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.six.value}
           </div>
-          <div id="seven" className="item item-7" onClick={this.handleClick}>
-            {this.state.seven.value}
+          <div
+            id="seven"
+            className="item item-7"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.seven.value}
           </div>
-          <div id="eight" className="item item-8" onClick={this.handleClick}>
-            {this.state.eight.value}
+          <div
+            id="eight"
+            className="item item-8"
+            onClick={this.props.handleClick}
+          >
+            {this.props.state.eight.value}
           </div>
         </div>
-        <button onClick={this.clearBoard}>Clear Board</button>
+        <button onClick={this.props.clearBoard}>Clear Board</button>
       </div>
     )
   }

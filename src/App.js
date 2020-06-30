@@ -6,10 +6,36 @@ import ScoreBoard from "./ScoreBoard"
 
 class App extends Component {
   state = {
+    zero: { value: null, clicked: false },
+    one: { value: null, clicked: false },
+    two: { value: null, clicked: false },
+    three: { value: null, clicked: false },
+    four: { value: null, clicked: false },
+    five: { value: null, clicked: false },
+    six: { value: null, clicked: false },
+    seven: { value: null, clicked: false },
+    eight: { value: null, clicked: false },
+    clickCount: 0,
+    playerOne: [],
+    playerTwo: [],
+    waysToWin: [
+      ["zero", "one", "two"],
+      ["three", "four", "five"],
+      ["six", "seven", "eight"],
+      ["zero", "three", "six"],
+      ["one", "four", "seven"],
+      ["two", "five", "eight"],
+      ["zero", "four", "eight"],
+      ["two", "four", "six"]
+    ],
+    keeperOne: 0,
+    keeperTwo: 0,
+
+    // --------------------------------------------
     playerOneChar: "x",
     playerTwoChar: "o",
     deck: ["x", "o", "x", "o", "x", "o", "x", "o", "x"],
-    
+
     playerOneTally:
       JSON.parse(window.localStorage.getItem("playerOneLocalStorage")) || 0,
     playerTwoTally:
@@ -98,6 +124,27 @@ class App extends Component {
     window.localStorage.clear()
     this.setState({ playerOneTally: 0, playerTwoTally: 0, playerDrawTally: 0 })
   }
+
+  clearBoard = () => {
+    this.setState({
+      zero: { value: null, clicked: false },
+      one: { value: null, clicked: false },
+      two: { value: null, clicked: false },
+      three: { value: null, clicked: false },
+      four: { value: null, clicked: false },
+      five: { value: null, clicked: false },
+      six: { value: null, clicked: false },
+      seven: { value: null, clicked: false },
+      eight: { value: null, clicked: false },
+      clickCount: 0,
+      playerOne: [],
+      playerTwo: [],
+      keeperOne: 0,
+      keeperTwo: 0
+    })
+  }
+
+  handleClick = () => {}
   render() {
     return (
       <div>
@@ -112,6 +159,8 @@ class App extends Component {
           deck={this.state.deck}
           state={this.state}
           updateScoreBoard={this.updateScoreBoard}
+          clearBoard={this.clearBoard}
+          handleClick={this.handleClick}
         />
         <ScoreBoard state={this.state} clearRecord={this.clearRecord} />
       </div>
