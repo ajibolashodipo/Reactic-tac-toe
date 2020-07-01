@@ -31,8 +31,12 @@ body {
   color: var(--quartenary-bg-color);
   background-color: var(--quartenary-bg-color);
   font-size: 1.5rem;
+}
+
+.body-container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 .main-container {

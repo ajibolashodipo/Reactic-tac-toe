@@ -102,7 +102,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="body-container">
         <div className="main-container">
           <h1>Tic Tac Choose</h1>
           <p className="tagline">Embrace the freedom. Choose your characters</p>
