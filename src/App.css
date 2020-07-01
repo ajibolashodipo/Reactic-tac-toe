@@ -17,6 +17,10 @@
   box-sizing: border-box !important;
 }
 
+li {
+  list-style-type: none;
+}
+
 html {
   height: 100%;
 }
@@ -31,12 +35,13 @@ body {
 
 .main-container {
   width: 80%;
-  margin: 1% auto 10%;
+  margin: 0 auto;
   /* border: 1px solid red; */
   border-radius: 20px;
   background-color: var(--primary-bg-color);
-  padding: 2% 5%;
+  padding: 1% 5% 2%;
   text-align: center;
+  transform: scale(0.88);
 }
 
 .board-layout {
@@ -58,8 +63,7 @@ button {
   color: var(--primary-bg-color);
   font-family: "Cutive Mono", monospace;
   text-align: center;
-  /* margin: auto; */
-  margin: 2% auto 0;
+  margin: 1rem auto 0;
   border: none;
   border-radius: 5px;
   outline: none;

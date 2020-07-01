@@ -3,6 +3,7 @@ import "./App.css"
 import PlayerSelect from "./PlayerSelect"
 import Board from "./Board"
 import ScoreBoard from "./ScoreBoard"
+import Footer from "./Footer"
 
 class App extends Component {
   state = {
@@ -119,6 +120,7 @@ class App extends Component {
             <ScoreBoard state={this.state} clearRecord={this.clearRecord} />
           </div>
         </div>
+        <Footer />
       </div>
     )
   }

@@ -8,11 +8,10 @@
 }
 
 .score-grid-container {
-  margin-top: 5%;
-  margin-left: 10%;
+  margin: 2rem auto 0;
   display: grid;
   grid-template-columns: repeat(3, 120px);
-  grid-template-rows: repeat(3, 90px);
+  grid-template-rows: repeat(2, 90px);
 }
 
 .score-item:nth-child(1),
