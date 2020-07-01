@@ -1,0 +1,20 @@
+.player-select-form {
+  margin-top: 3%;
+}
+
+.form-flex-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-label {
+  font-size: 1.1rem;
+}
+
+.player-input {
+  width: 20%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}

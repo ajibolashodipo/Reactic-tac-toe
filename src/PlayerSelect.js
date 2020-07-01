@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import "./PlayerSelect.css"
 
 class PlayerSelect extends Component {
   state = {
@@ -30,25 +31,37 @@ class PlayerSelect extends Component {
   }
   render() {
     return (
-      <div>
-        <p>Choose your character</p>
+      <div className="player-select-form">
         <form action="" onSubmit={this.handleSubmit}>
-          <label htmlFor="playerOneChar">Player 1:</label>
-          <input
-            type="text"
-            id="playerOneChar"
-            onChange={this.handleChange}
-            value={this.state.playerOneChar}
-            maxlength="1"
-          />
-          <label htmlFor="playerTwoChar">Player 2:</label>
-          <input
-            type="text"
-            id="playerTwoChar"
-            onChange={this.handleChange}
-            value={this.state.playerTwoChar}
-            maxlength="1"
-          />
+          <div className="form-flex-container">
+            <div className="">
+              <label className="form-label" htmlFor="playerOneChar">
+                Player 1:
+              </label>
+              <input
+                type="text"
+                id="playerOneChar"
+                className="player-input"
+                onChange={this.handleChange}
+                value={this.state.playerOneChar}
+                maxlength="1"
+              />
+            </div>
+            <div className="">
+              <label className="form-label" htmlFor="playerTwoChar">
+                Player 2:
+              </label>
+              <input
+                type="text"
+                id="playerTwoChar"
+                className="player-input"
+                onChange={this.handleChange}
+                value={this.state.playerTwoChar}
+                maxlength="1"
+              />
+            </div>
+          </div>
+
           <button>Let's Play</button>
         </form>
       </div>

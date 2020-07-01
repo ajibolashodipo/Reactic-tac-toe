@@ -1,17 +1,26 @@
+:root {
+  /* --primary-bg-color: #fff;
+  --secondary-bg-color: #1d1f1d;
+  --tertiary-bg-color: #e4ede6; */
+  /* 
+  --tertiary-bg-color: #fdfdf6;
+  --quartenary-bg-color: #857671;
+  --cinq-bg-color: black; */
+}
+
 .grid-container {
-  margin-top: 5%;
-  margin-left: 10%;
   display: grid;
   grid-template-columns: repeat(3, 90px);
   grid-template-rows: repeat(3, 90px);
 }
 
 .item {
-  border: 2px solid black;
+  border: 2px solid var(--secondary-bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  color: var(--quartenary-bg-color);
 }
 
 .item:nth-child(1),

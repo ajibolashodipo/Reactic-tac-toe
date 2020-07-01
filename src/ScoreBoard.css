@@ -1,0 +1,34 @@
+.score-item {
+  border: 2px solid var(--secondary-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--quartenary-bg-color);
+}
+
+.score-grid-container {
+  margin-top: 5%;
+  margin-left: 10%;
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 90px);
+}
+
+.score-item:nth-child(1),
+.score-item:nth-child(2),
+.score-item:nth-child(3) {
+  border-top: none;
+}
+.score-item:nth-child(4),
+.score-item:nth-child(5),
+.score-item:nth-child(6) {
+  border-bottom: none;
+}
+
+.score-item:nth-child(3n + 1) {
+  border-left: none;
+}
+.score-item:nth-child(3n + 3) {
+  border-right: none;
+}

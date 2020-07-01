@@ -102,19 +102,23 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>reacTic Tac Toe</h1>
-        <PlayerSelect
-          registerPlayer={this.registerPlayer}
-          loadDeck={this.loadDeck}
-          state={this.state}
-        />
-
-        <Board
-          deck={this.state.deck}
-          state={this.state}
-          updateScoreBoard={this.updateScoreBoard}
-        />
-        <ScoreBoard state={this.state} clearRecord={this.clearRecord} />
+        <div className="main-container">
+          <h1>Tic Tac Choose</h1>
+          <p className="tagline">Embrace the freedom. Choose your characters</p>
+          <PlayerSelect
+            registerPlayer={this.registerPlayer}
+            loadDeck={this.loadDeck}
+            state={this.state}
+          />
+          <div className="board-layout">
+            <Board
+              deck={this.state.deck}
+              state={this.state}
+              updateScoreBoard={this.updateScoreBoard}
+            />
+            <ScoreBoard state={this.state} clearRecord={this.clearRecord} />
+          </div>
+        </div>
       </div>
     )
   }

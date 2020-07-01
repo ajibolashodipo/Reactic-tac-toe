@@ -177,7 +177,7 @@ class Board extends Component {
   render() {
     return (
       <div>
-        <div className="grid-container">
+        <div className="Board grid-container">
           <div id="zero" className="item item-0" onClick={this.handleClick}>
             {this.state.zero.value}
           </div>

@@ -1,42 +1,67 @@
-/* .App {
+:root {
+  /* --primary-bg-color: #fff;
+  --secondary-bg-color: #1d1f1d;
+  --tertiary-bg-color: #e4ede6; */
+
+  --primary-bg-color: #584f84;
+  /* --primary-bg-color: #bd6ee6; */
+  --secondary-bg-color: #876a96;
+  --tertiary-bg-color: #d7c1e0;
+  --quartenary-bg-color: #edeff2;
+  --cinq-bg-color: black;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: "Cutive Mono", monospace;
+  color: var(--quartenary-bg-color);
+  background-color: var(--quartenary-bg-color);
+  font-size: 1.5rem;
+}
+
+.main-container {
+  width: 80%;
+  margin: 1% auto 10%;
+  /* border: 1px solid red; */
+  border-radius: 20px;
+  background-color: var(--primary-bg-color);
+  padding: 2% 5%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.board-layout {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
+  margin-top: 3rem;
 }
 
-.App-link {
-  color: #61dafb;
+.tagline {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
-body {
-  background-color: aquamarine;
+button {
+  display: block;
+  cursor: pointer;
+  width: 12rem;
+  padding: 0.5rem 1.5rem;
+  color: var(--secondary-bg-color);
+  color: var(--primary-bg-color);
+  font-family: "Cutive Mono", monospace;
+  text-align: center;
+  /* margin: auto; */
+  margin: 2% auto 0;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1.1rem;
 }
