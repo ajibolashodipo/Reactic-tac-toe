@@ -12,6 +12,10 @@
   display: flex;
 }
 
+.footer .fas {
+  color: var(--cinq-bg-color);
+}
+
 .footer .social-media .fab {
   margin-left: 2rem;
   color: var(--quartenary-bg-color);

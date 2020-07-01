@@ -56,14 +56,16 @@ class Board extends Component {
             keeperOne: currentState.keeperOne + 1
           }),
           () => {
+            //
             this.props.updateScoreBoard(playerOneChar)
             console.log(`${playerOneChar} wins`)
+            ///sdfs
             this.setState({
-              playerResultMessage: `Player1 (${this.props.state.playerOneChar}) wins this round. Player1 has won ${this.props.state.playerOneTally} games and drawn ${this.props.state.playerDrawTally} thus far`
+              playerResultMessage: `Player1 (${this.props.state.playerOneChar}) wins this round. `
             })
-          },
-          () => {}
+          }
         )
+
         return true
       }
     }
@@ -89,7 +91,7 @@ class Board extends Component {
             this.props.updateScoreBoard(playerTwoChar)
             console.log(`${playerTwoChar} wins`)
             this.setState({
-              playerResultMessage: `Player2 (${this.props.state.playerTwoChar}) wins this round. Player2 has won ${this.props.state.playerTwoTally} games and drawn ${this.props.state.playerDrawTally} thus far`
+              playerResultMessage: `Player2 (${this.props.state.playerTwoChar}) wins this round. `
             })
           }
         )
@@ -106,7 +108,7 @@ class Board extends Component {
       this.props.updateScoreBoard("DRAW")
       console.log("draw")
       this.setState({
-        playerResultMessage: `Whew. A tie. There has been ${this.props.state.playerDrawTally} ties thus far`
+        playerResultMessage: `A tie. No victor. No vanquished`
       })
     }
   }
@@ -126,7 +128,8 @@ class Board extends Component {
       playerOne: [],
       playerTwo: [],
       keeperOne: 0,
-      keeperTwo: 0
+      keeperTwo: 0,
+      playerResultMessage: ""
     })
   }
 
@@ -193,6 +196,16 @@ class Board extends Component {
       this.setState({ playerTwo: playerTwo })
     }
   }
+
+  handleModal = () => {
+    this.setState({ playerResultMessage: "" })
+  }
+
+  handleReload = () => {
+    this.setState({ playerResultMessage: "" })
+    this.clearBoard()
+  }
+
   render() {
     const xColor = this.state.gridColorX
     const oColor = this.state.gridColorO
@@ -320,9 +333,20 @@ class Board extends Component {
         </div>
         <button onClick={this.clearBoard}>Clear Board</button>
 
-        <div className="">
+        <div
+          className={
+            this.state.playerResultMessage
+              ? "conclusion-board animate"
+              : "conclusion-board"
+          }
+        >
           <h3>Result</h3>
+
           <p>{this.state.playerResultMessage}</p>
+          <div className="button-container">
+            <button onClick={this.handleModal}>Close</button>
+            <button onClick={this.handleReload}>Play Again</button>
+          </div>
         </div>
       </div>
     )
