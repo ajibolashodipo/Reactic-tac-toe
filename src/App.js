@@ -9,7 +9,7 @@ class App extends Component {
     playerOneChar: "x",
     playerTwoChar: "o",
     deck: ["x", "o", "x", "o", "x", "o", "x", "o", "x"],
-    
+
     playerOneTally:
       JSON.parse(window.localStorage.getItem("playerOneLocalStorage")) || 0,
     playerTwoTally:
@@ -98,6 +98,7 @@ class App extends Component {
     window.localStorage.clear()
     this.setState({ playerOneTally: 0, playerTwoTally: 0, playerDrawTally: 0 })
   }
+
   render() {
     return (
       <div>

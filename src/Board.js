@@ -41,7 +41,6 @@ class Board extends Component {
   //player one win algorithm
   checkWinnerPlayerOne = (waysToWin, plOneGridEl) => {
     const { playerOneChar } = this.props.state
-    // const { updateScoreboard } = this.props
     for (const permutation of waysToWin) {
       if (
         plOneGridEl.includes(permutation[0]) &&
@@ -68,7 +67,6 @@ class Board extends Component {
   //player two win algorithm
   checkWinnerPlayerTwo = (waysToWin, plOneGridEl) => {
     const { playerTwoChar } = this.props.state
-    // const { updateScoreboard } = this.props
     for (const permutation of waysToWin) {
       if (
         plOneGridEl.includes(permutation[0]) &&
@@ -94,7 +92,6 @@ class Board extends Component {
 
   //the tie/draw algorithm
   checkTie = (plOne, plTwo) => {
-    // const { updateScoreboard } = this.props
     if (plOne === false && plTwo === false) {
       this.props.updateScoreBoard("DRAW")
       console.log("draw")

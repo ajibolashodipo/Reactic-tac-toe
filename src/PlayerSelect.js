@@ -13,7 +13,18 @@ class PlayerSelect extends Component {
   }
 
   handleSubmit = (e) => {
+    const { playerOneChar, playerTwoChar } = this.state
     e.preventDefault()
+
+    if (playerOneChar === "" || playerTwoChar === "") {
+      console.log("one or more empty input field")
+      return
+    }
+    if (playerOneChar === playerTwoChar) {
+      console.log("characters cannot be identical")
+      return
+    }
+
     this.props.loadDeck(this.state.playerOneChar, this.state.playerTwoChar)
     this.props.registerPlayer(this.state)
   }
@@ -28,6 +39,7 @@ class PlayerSelect extends Component {
             id="playerOneChar"
             onChange={this.handleChange}
             value={this.state.playerOneChar}
+            maxlength="1"
           />
           <label htmlFor="playerTwoChar">Player 2:</label>
           <input
@@ -35,6 +47,7 @@ class PlayerSelect extends Component {
             id="playerTwoChar"
             onChange={this.handleChange}
             value={this.state.playerTwoChar}
+            maxlength="1"
           />
           <button>Let's Play</button>
         </form>
