@@ -31,11 +31,14 @@ body {
   color: var(--quartenary-bg-color);
   background-color: var(--quartenary-bg-color);
   font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-container {
   width: 80%;
   margin: 0 auto;
+  flex: 1 0 auto;
   /* border: 1px solid red; */
   border-radius: 20px;
   background-color: var(--primary-bg-color);
