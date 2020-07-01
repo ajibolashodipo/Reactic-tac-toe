@@ -125,6 +125,10 @@ class Board extends Component {
     if (this.state[e.target.id].clicked) {
       return
     }
+    //stops clicks after a win has been confirmed
+    if (this.state.keeperOne || this.state.keeperTwo) {
+      return
+    }
 
     this.setState(
       {
