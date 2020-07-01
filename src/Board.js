@@ -26,7 +26,9 @@ class Board extends Component {
       ["two", "four", "six"]
     ],
     keeperOne: 0,
-    keeperTwo: 0
+    keeperTwo: 0,
+    gridColorX: "#edeff2",
+    gridColorO: "#e6ae73"
   }
 
   //maps data from object to array
@@ -165,44 +167,116 @@ class Board extends Component {
 
     //use counter to separate them
     if (clickCount % 2 === 0) {
-      let playerData = { gridID: e.target.id, gridChar: deck[clickCount] }
+      let playerData = {
+        gridID: e.target.id,
+        gridChar: deck[clickCount]
+      }
       const playerOne = [...this.state.playerOne, playerData]
       this.setState({ playerOne: playerOne })
     } else {
-      let playerData = { gridID: e.target.id, gridChar: deck[clickCount] }
+      let playerData = {
+        gridID: e.target.id,
+        gridChar: deck[clickCount]
+      }
       const playerTwo = [...this.state.playerTwo, playerData]
       this.setState({ playerTwo: playerTwo })
     }
   }
   render() {
+    const xColor = this.state.gridColorX
+    const oColor = this.state.gridColorO
+
     return (
       <div>
         <div className="Board grid-container">
-          <div id="zero" className="item item-0" onClick={this.handleClick}>
+          <div
+            id="zero"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+            }}
+            className="item item-0"
+            onClick={this.handleClick}
+          >
             {this.state.zero.value}
           </div>
-          <div id="one" className="item item-1" onClick={this.handleClick}>
+          <div
+            id="one"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? oColor : oColor
+            }}
+            className="item item-1"
+            onClick={this.handleClick}
+          >
             {this.state.one.value}
           </div>
-          <div id="two" className="item item-2" onClick={this.handleClick}>
+          <div
+            id="two"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+            }}
+            className="item item-2"
+            onClick={this.handleClick}
+          >
             {this.state.two.value}
           </div>
-          <div id="three" className="item item-3" onClick={this.handleClick}>
+          <div
+            id="three"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? oColor : oColor
+            }}
+            className="item item-3"
+            onClick={this.handleClick}
+          >
             {this.state.three.value}
           </div>
-          <div id="four" className="item item-4" onClick={this.handleClick}>
+          <div
+            id="four"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+            }}
+            className="item item-4"
+            onClick={this.handleClick}
+          >
             {this.state.four.value}
           </div>
-          <div id="five" className="item item-5" onClick={this.handleClick}>
+          <div
+            id="five"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? oColor : oColor
+            }}
+            className="item item-5"
+            onClick={this.handleClick}
+          >
             {this.state.five.value}
           </div>
-          <div id="six" className="item item-6" onClick={this.handleClick}>
+          <div
+            id="six"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+            }}
+            className="item item-6"
+            onClick={this.handleClick}
+          >
             {this.state.six.value}
           </div>
-          <div id="seven" className="item item-7" onClick={this.handleClick}>
+          <div
+            id="seven"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? oColor : oColor
+            }}
+            className="item item-7"
+            onClick={this.handleClick}
+          >
             {this.state.seven.value}
           </div>
-          <div id="eight" className="item item-8" onClick={this.handleClick}>
+          <div
+            id="eight"
+            style={{
+              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+            }}
+            className="item item-8"
+            onClick={this.handleClick}
+          >
             {this.state.eight.value}
           </div>
         </div>

@@ -20,7 +20,8 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: var(--quartenary-bg-color);
+  /* color: var(--cinq-bg-color); */
+  font-size: 5rem;
 }
 
 .item:nth-child(1),
