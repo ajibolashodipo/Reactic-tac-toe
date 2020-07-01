@@ -28,7 +28,8 @@ class Board extends Component {
     keeperOne: 0,
     keeperTwo: 0,
     gridColorX: "#edeff2",
-    gridColorO: "#e6ae73"
+    gridColorO: "#e6ae73",
+    playerResultMessage: ""
   }
 
   //maps data from object to array
@@ -57,7 +58,11 @@ class Board extends Component {
           () => {
             this.props.updateScoreBoard(playerOneChar)
             console.log(`${playerOneChar} wins`)
-          }
+            this.setState({
+              playerResultMessage: `Player1 (${this.props.state.playerOneChar}) wins this round. Player1 has won ${this.props.state.playerOneTally} games and drawn ${this.props.state.playerDrawTally} thus far`
+            })
+          },
+          () => {}
         )
         return true
       }
@@ -83,6 +88,9 @@ class Board extends Component {
           () => {
             this.props.updateScoreBoard(playerTwoChar)
             console.log(`${playerTwoChar} wins`)
+            this.setState({
+              playerResultMessage: `Player2 (${this.props.state.playerTwoChar}) wins this round. Player2 has won ${this.props.state.playerTwoTally} games and drawn ${this.props.state.playerDrawTally} thus far`
+            })
           }
         )
         return true
@@ -97,6 +105,9 @@ class Board extends Component {
     if (plOne === false && plTwo === false) {
       this.props.updateScoreBoard("DRAW")
       console.log("draw")
+      this.setState({
+        playerResultMessage: `Whew. A tie. There has been ${this.props.state.playerDrawTally} ties thus far`
+      })
     }
   }
 
@@ -192,7 +203,10 @@ class Board extends Component {
           <div
             id="zero"
             style={{
-              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+              color:
+                this.props.state.playerOneChar === this.state.zero.value
+                  ? xColor
+                  : oColor
             }}
             className="item item-0"
             onClick={this.handleClick}
@@ -202,7 +216,10 @@ class Board extends Component {
           <div
             id="one"
             style={{
-              color: this.state.clickCount % 2 === 0 ? oColor : oColor
+              color:
+                this.props.state.playerOneChar === this.state.one.value
+                  ? xColor
+                  : oColor
             }}
             className="item item-1"
             onClick={this.handleClick}
@@ -212,7 +229,10 @@ class Board extends Component {
           <div
             id="two"
             style={{
-              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+              color:
+                this.props.state.playerOneChar === this.state.two.value
+                  ? xColor
+                  : oColor
             }}
             className="item item-2"
             onClick={this.handleClick}
@@ -220,10 +240,13 @@ class Board extends Component {
             {this.state.two.value}
           </div>
           <div
-            id="three"
             style={{
-              color: this.state.clickCount % 2 === 0 ? oColor : oColor
+              color:
+                this.props.state.playerOneChar === this.state.three.value
+                  ? xColor
+                  : oColor
             }}
+            id="three"
             className="item item-3"
             onClick={this.handleClick}
           >
@@ -232,7 +255,10 @@ class Board extends Component {
           <div
             id="four"
             style={{
-              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+              color:
+                this.props.state.playerOneChar === this.state.four.value
+                  ? xColor
+                  : oColor
             }}
             className="item item-4"
             onClick={this.handleClick}
@@ -242,7 +268,10 @@ class Board extends Component {
           <div
             id="five"
             style={{
-              color: this.state.clickCount % 2 === 0 ? oColor : oColor
+              color:
+                this.props.state.playerOneChar === this.state.five.value
+                  ? xColor
+                  : oColor
             }}
             className="item item-5"
             onClick={this.handleClick}
@@ -252,7 +281,10 @@ class Board extends Component {
           <div
             id="six"
             style={{
-              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+              color:
+                this.props.state.playerOneChar === this.state.six.value
+                  ? xColor
+                  : oColor
             }}
             className="item item-6"
             onClick={this.handleClick}
@@ -262,7 +294,10 @@ class Board extends Component {
           <div
             id="seven"
             style={{
-              color: this.state.clickCount % 2 === 0 ? oColor : oColor
+              color:
+                this.props.state.playerOneChar === this.state.seven.value
+                  ? xColor
+                  : oColor
             }}
             className="item item-7"
             onClick={this.handleClick}
@@ -272,7 +307,10 @@ class Board extends Component {
           <div
             id="eight"
             style={{
-              color: this.state.clickCount % 2 === 0 ? xColor : xColor
+              color:
+                this.props.state.playerOneChar === this.state.eight.value
+                  ? xColor
+                  : oColor
             }}
             className="item item-8"
             onClick={this.handleClick}
@@ -281,6 +319,11 @@ class Board extends Component {
           </div>
         </div>
         <button onClick={this.clearBoard}>Clear Board</button>
+
+        <div className="">
+          <h3>Result</h3>
+          <p>{this.state.playerResultMessage}</p>
+        </div>
       </div>
     )
   }

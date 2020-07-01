@@ -111,6 +111,7 @@ class App extends Component {
             loadDeck={this.loadDeck}
             state={this.state}
           />
+
           <div className="board-layout">
             <Board
               deck={this.state.deck}

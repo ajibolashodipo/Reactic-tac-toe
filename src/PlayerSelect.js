@@ -4,7 +4,8 @@ import "./PlayerSelect.css"
 class PlayerSelect extends Component {
   state = {
     playerOneChar: this.props.state.playerOneChar,
-    playerTwoChar: this.props.state.playerTwoChar
+    playerTwoChar: this.props.state.playerTwoChar,
+    errorMessage: ""
   }
 
   handleChange = (e) => {
@@ -19,10 +20,24 @@ class PlayerSelect extends Component {
 
     if (playerOneChar === "" || playerTwoChar === "") {
       console.log("one or more empty input field")
+      this.setState(
+        { errorMessage: "One or more empty input field(s)" },
+        () => {
+          setTimeout(() => {
+            this.setState({ errorMessage: "" })
+          }, 3000)
+        }
+      )
+
       return
     }
     if (playerOneChar === playerTwoChar) {
       console.log("characters cannot be identical")
+      this.setState({ errorMessage: "Characters cannot be identical" }, () => {
+        setTimeout(() => {
+          this.setState({ errorMessage: "" })
+        }, 3000)
+      })
       return
     }
 
@@ -64,6 +79,9 @@ class PlayerSelect extends Component {
 
           <button>Let's Play</button>
         </form>
+        <p className={this.state.errorMessage ? "alert-paragraph" : ""}>
+          {this.state.errorMessage}
+        </p>
       </div>
     )
   }

@@ -18,3 +18,14 @@
   border-radius: 5px;
   outline: none;
 }
+
+.alert-paragraph {
+  background-color: bisque;
+  border-radius: 5px;
+  color: #e84435;
+  width: 60%;
+  padding: 1%;
+  margin: 1rem auto;
+  font-size: 1rem;
+  font-weight: bold;
+}
