@@ -90,8 +90,8 @@ button:hover {
 
 @media only screen and (max-width: 576px) {
   .main-container {
-    width: 93%;
-    margin: 2.5% auto;
+    width: 94%;
+    margin: 1.5% auto;
     flex: 1 0 auto;
     border-radius: 20px;
     background-color: var(--primary-bg-color);
