@@ -1,6 +1,7 @@
 .score-item {
   border: 2px solid var(--secondary-bg-color);
   display: flex;
+  font-size: 1.1rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -10,7 +11,7 @@
 .score-grid-container {
   margin: 4rem auto 0;
   display: grid;
-  grid-template-columns: repeat(3, 110px);
+  grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(2, 90px);
 }
 
@@ -30,4 +31,13 @@
 }
 .score-item:nth-child(3n + 3) {
   border-right: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .score-grid-container {
+    margin: 4rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 95px);
+    grid-template-rows: repeat(2, 90px);
+  }
 }
