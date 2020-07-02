@@ -46,6 +46,7 @@ class App extends Component {
       JSON.parse(window.localStorage.getItem("playerDrawLocalStorage")) || 0
   }
 
+  //assigns user-selected characters to state
   registerPlayer = (data) => {
     const extractKey = Object.keys(data)
     this.setState({
@@ -54,6 +55,7 @@ class App extends Component {
     })
   }
 
+  //loads the deck
   loadDeck = (char1, char2) => {
     const myArray = []
     for (let i = 0; i < 9; i++) {
@@ -68,185 +70,7 @@ class App extends Component {
     })
   }
 
-  updateScoreBoard = (scoreChar) => {
-    if (scoreChar === this.state.playerOneChar) {
-      this.setState(
-        (currentState) => ({
-          playerOneTally: currentState.playerOneTally + 1
-        }),
-        () => {
-          let currentTally = this.state.playerOneTally
-
-          window.localStorage.setItem(
-            "playerOneLocalStorage",
-            JSON.stringify(currentTally)
-          )
-        }
-      )
-    }
-    if (scoreChar === this.state.playerTwoChar) {
-      this.setState(
-        (currentState) => ({
-          playerTwoTally: currentState.playerTwoTally + 1
-        }),
-        () => {
-          let currentTally = this.state.playerTwoTally
-
-          window.localStorage.setItem(
-            "playerTwoLocalStorage",
-            JSON.stringify(currentTally)
-          )
-        }
-      )
-    }
-    if (scoreChar === "DRAW") {
-      this.setState(
-        (currentState) => ({
-          playerDrawTally: currentState.playerDrawTally + 1
-        }),
-        () => {
-          let currentTally = this.state.playerDrawTally
-
-          window.localStorage.setItem(
-            "playerDrawLocalStorage",
-            JSON.stringify(currentTally)
-          )
-        }
-      )
-    }
-  }
-
-  clearRecord = () => {
-    window.localStorage.clear()
-    this.setState({ playerOneTally: 0, playerTwoTally: 0, playerDrawTally: 0 })
-  }
-
-  playerOneWins = (data) => {
-    const { playerOneChar } = this.state
-    const extractKey = Object.keys(data)
-    this.setState(
-      {
-        [extractKey[0]]: data[extractKey[0]]
-      },
-      () => {
-        this.updateScoreBoard(playerOneChar)
-
-        this.setState({
-          playerResultMessage: `Player1 (${playerOneChar}) wins this round. `
-        })
-      }
-    )
-  }
-
-  playerTwoWins = (data) => {
-    const { playerTwoChar } = this.state
-    const extractKey = Object.keys(data)
-    this.setState(
-      {
-        [extractKey[0]]: data[extractKey[0]]
-      },
-      () => {
-        this.updateScoreBoard(playerTwoChar)
-
-        this.setState({
-          playerResultMessage: `Player2 (${playerTwoChar}) wins this round. `
-        })
-      }
-    )
-  }
-
-  playerNoWins = (data) => {
-    const extractKey = Object.keys(data)
-    this.setState({
-      [extractKey[0]]: data[extractKey[0]]
-    })
-  }
-  clearBoard = () => {
-    this.setState({
-      zero: { value: null, clicked: false },
-      one: { value: null, clicked: false },
-      two: { value: null, clicked: false },
-      three: { value: null, clicked: false },
-      four: { value: null, clicked: false },
-      five: { value: null, clicked: false },
-      six: { value: null, clicked: false },
-      seven: { value: null, clicked: false },
-      eight: { value: null, clicked: false },
-      clickCount: 0,
-      playerOne: [],
-      playerTwo: [],
-      keeperOne: 0,
-      keeperTwo: 0,
-      playerResultMessage: ""
-    })
-  }
-
-  handleModal = (data) => {
-    const extractKey = Object.keys(data)
-    this.setState({
-      [extractKey[0]]: data[extractKey[0]]
-    })
-  }
-  handleReload = (data) => {
-    const extractKey = Object.keys(data)
-    this.setState({
-      [extractKey[0]]: data[extractKey[0]]
-    })
-    this.clearBoard()
-  }
-
-  //maps data from object to array
-  mapPlayertoArray = (player) => {
-    //map out to another array the grid element names
-    const plOneGridEl = player.map((el) => {
-      return el.gridID
-    })
-    return plOneGridEl
-  }
-
-  //player one win algorithm
-  checkWinnerPlayerOne = (waysToWin, plOneGridEl) => {
-    for (const permutation of waysToWin) {
-      if (
-        plOneGridEl.includes(permutation[0]) &&
-        plOneGridEl.includes(permutation[1]) &&
-        plOneGridEl.includes(permutation[2])
-      ) {
-        //to control eventual return
-        this.playerOneWins({ keeperOne: this.state.keeperOne + 1 })
-        return true
-      }
-    }
-
-    return false
-  }
-
-  //player two win algorithm
-  checkWinnerPlayerTwo = (waysToWin, plOneGridEl) => {
-    for (const permutation of waysToWin) {
-      if (
-        plOneGridEl.includes(permutation[0]) &&
-        plOneGridEl.includes(permutation[1]) &&
-        plOneGridEl.includes(permutation[2])
-      ) {
-        //to control evental return
-        this.playerTwoWins({ keeperTwo: this.state.keeperTwo + 1 })
-        return true
-      }
-    }
-    return false
-  }
-
-  //the tie/draw algorithm
-  checkTie = (plOne, plTwo) => {
-    if (plOne === false && plTwo === false) {
-      this.updateScoreBoard("DRAW")
-      this.playerNoWins({
-        playerResultMessage: "A tie. No victor. No vanquished"
-      })
-    }
-  }
-
+  //handles click on board
   handleClick = (e) => {
     let { deck } = this.state
     let { clickCount } = this.state
@@ -307,6 +131,195 @@ class App extends Component {
       const playerTwo = [...this.state.playerTwo, playerData]
       this.setState({ playerTwo: playerTwo })
     }
+  }
+
+  //player one win algorithm
+  checkWinnerPlayerOne = (waysToWin, plOneGridEl) => {
+    for (const permutation of waysToWin) {
+      if (
+        plOneGridEl.includes(permutation[0]) &&
+        plOneGridEl.includes(permutation[1]) &&
+        plOneGridEl.includes(permutation[2])
+      ) {
+        //to control eventual return
+        this.playerOneWins({ keeperOne: this.state.keeperOne + 1 })
+        return true
+      }
+    }
+
+    return false
+  }
+
+  //player two win algorithm
+  checkWinnerPlayerTwo = (waysToWin, plOneGridEl) => {
+    for (const permutation of waysToWin) {
+      if (
+        plOneGridEl.includes(permutation[0]) &&
+        plOneGridEl.includes(permutation[1]) &&
+        plOneGridEl.includes(permutation[2])
+      ) {
+        //to control evental return
+        this.playerTwoWins({ keeperTwo: this.state.keeperTwo + 1 })
+        return true
+      }
+    }
+    return false
+  }
+
+  //the tie/draw algorithm
+  checkTie = (plOne, plTwo) => {
+    if (plOne === false && plTwo === false) {
+      this.updateScoreBoard("DRAW")
+      this.playerNoWins({
+        playerResultMessage: "A tie. No victor. No vanquished"
+      })
+    }
+  }
+
+  //updates scoreboard
+  updateScoreBoard = (scoreChar) => {
+    if (scoreChar === this.state.playerOneChar) {
+      this.setState(
+        (currentState) => ({
+          playerOneTally: currentState.playerOneTally + 1
+        }),
+        () => {
+          let currentTally = this.state.playerOneTally
+
+          window.localStorage.setItem(
+            "playerOneLocalStorage",
+            JSON.stringify(currentTally)
+          )
+        }
+      )
+    }
+    if (scoreChar === this.state.playerTwoChar) {
+      this.setState(
+        (currentState) => ({
+          playerTwoTally: currentState.playerTwoTally + 1
+        }),
+        () => {
+          let currentTally = this.state.playerTwoTally
+
+          window.localStorage.setItem(
+            "playerTwoLocalStorage",
+            JSON.stringify(currentTally)
+          )
+        }
+      )
+    }
+    if (scoreChar === "DRAW") {
+      this.setState(
+        (currentState) => ({
+          playerDrawTally: currentState.playerDrawTally + 1
+        }),
+        () => {
+          let currentTally = this.state.playerDrawTally
+
+          window.localStorage.setItem(
+            "playerDrawLocalStorage",
+            JSON.stringify(currentTally)
+          )
+        }
+      )
+    }
+  }
+
+  //clears the scoreboard by resetting the state
+  clearRecord = () => {
+    window.localStorage.clear()
+    this.setState({ playerOneTally: 0, playerTwoTally: 0, playerDrawTally: 0 })
+  }
+
+  //actions upon player1 winning
+  playerOneWins = (data) => {
+    const { playerOneChar } = this.state
+    const extractKey = Object.keys(data)
+    this.setState(
+      {
+        [extractKey[0]]: data[extractKey[0]]
+      },
+      () => {
+        this.updateScoreBoard(playerOneChar)
+
+        this.setState({
+          playerResultMessage: `Player1 (${playerOneChar}) wins this round. `
+        })
+      }
+    )
+  }
+
+  //actions upon player2 winning
+  playerTwoWins = (data) => {
+    const { playerTwoChar } = this.state
+    const extractKey = Object.keys(data)
+    this.setState(
+      {
+        [extractKey[0]]: data[extractKey[0]]
+      },
+      () => {
+        this.updateScoreBoard(playerTwoChar)
+
+        this.setState({
+          playerResultMessage: `Player2 (${playerTwoChar}) wins this round. `
+        })
+      }
+    )
+  }
+
+  //actions upon no wins
+  playerNoWins = (data) => {
+    const extractKey = Object.keys(data)
+    this.setState({
+      [extractKey[0]]: data[extractKey[0]]
+    })
+  }
+
+  //clears the board by resetting state
+  clearBoard = () => {
+    this.setState({
+      zero: { value: null, clicked: false },
+      one: { value: null, clicked: false },
+      two: { value: null, clicked: false },
+      three: { value: null, clicked: false },
+      four: { value: null, clicked: false },
+      five: { value: null, clicked: false },
+      six: { value: null, clicked: false },
+      seven: { value: null, clicked: false },
+      eight: { value: null, clicked: false },
+      clickCount: 0,
+      playerOne: [],
+      playerTwo: [],
+      keeperOne: 0,
+      keeperTwo: 0,
+      playerResultMessage: ""
+    })
+  }
+
+  //handles button click on pop up after win or draw
+  handleModal = (data) => {
+    const extractKey = Object.keys(data)
+    this.setState({
+      [extractKey[0]]: data[extractKey[0]]
+    })
+  }
+
+  //handles button click on pop up after win or draw
+  handleReload = (data) => {
+    const extractKey = Object.keys(data)
+    this.setState({
+      [extractKey[0]]: data[extractKey[0]]
+    })
+    this.clearBoard()
+  }
+
+  //maps data from object to array
+  mapPlayertoArray = (player) => {
+    //map out to another array the grid element names
+    const plOneGridEl = player.map((el) => {
+      return el.gridID
+    })
+    return plOneGridEl
   }
 
   render() {
