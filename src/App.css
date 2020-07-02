@@ -97,7 +97,7 @@ button:hover {
     background-color: var(--primary-bg-color);
     padding: 3% 5% 7.5%;
     text-align: center;
-    transform: scale(1);
+    transform: scale(0.95);
   }
 
   .board-layout {
