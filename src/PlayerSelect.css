@@ -29,3 +29,30 @@
   font-size: 1rem;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 576px) {
+  .player-select-form {
+    margin: 7.5% 0 10%;
+  }
+
+  .form-flex-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .form-label {
+    font-size: 1.1rem;
+  }
+
+  .player-input {
+    width: 30%;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .alert-paragraph {
+    width: 85%;
+  }
+}

@@ -345,6 +345,7 @@ class App extends Component {
               handleReload={this.handleReload}
               handleClick={this.handleClick}
             />
+
             <ScoreBoard state={this.state} clearRecord={this.clearRecord} />
           </div>
         </div>

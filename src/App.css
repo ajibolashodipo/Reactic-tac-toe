@@ -30,6 +30,7 @@ body {
   font-family: "Cutive Mono", monospace;
   color: var(--quartenary-bg-color);
   background-color: var(--quartenary-bg-color);
+  background-color: #b5b8e8;
   font-size: 1.5rem;
 }
 
@@ -37,6 +38,10 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  margin: auto;
+  /* width: 100%; */
+
+  /* background-color: #b5b8e8; */
 }
 
 .main-container {
@@ -81,4 +86,30 @@ button {
 button:hover {
   background-color: var(--cinq-bg-color);
   transform: scale(1.05);
+}
+
+@media only screen and (max-width: 576px) {
+  .main-container {
+    width: 93%;
+    margin: 5% auto;
+    flex: 1 0 auto;
+    border-radius: 20px;
+    background-color: var(--primary-bg-color);
+    padding: 3% 5% 7.5%;
+    text-align: center;
+    transform: scale(1);
+  }
+
+  .board-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  button {
+    margin: 1.3rem auto 0;
+    font-size: 1.1rem;
+  }
 }
