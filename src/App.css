@@ -91,13 +91,18 @@ button:hover {
 @media only screen and (max-width: 576px) {
   .main-container {
     width: 93%;
-    margin: 5% auto;
+    margin: 2.5% auto;
     flex: 1 0 auto;
     border-radius: 20px;
     background-color: var(--primary-bg-color);
     padding: 3% 5% 7.5%;
     text-align: center;
-    transform: scale(0.95);
+    transform: scale(0.96);
+  }
+  .tagline {
+    font-size: 1.1rem;
+    margin-top: 0.9rem;
+    font-style: italic;
   }
 
   .board-layout {
