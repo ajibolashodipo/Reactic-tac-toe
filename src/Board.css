@@ -60,6 +60,9 @@
 .button-container {
   display: flex;
 }
+.button-container button {
+  width: auto;
+}
 
 @media only screen and (max-width: 576px) {
   .conclusion-board {
@@ -88,9 +91,5 @@
 
   .button-container {
     border-top: 1px solid grey;
-  }
-
-  .button-container button {
-    width: auto;
   }
 }
