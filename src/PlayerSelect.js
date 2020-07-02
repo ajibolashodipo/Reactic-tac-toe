@@ -19,7 +19,6 @@ class PlayerSelect extends Component {
     e.preventDefault()
 
     if (playerOneChar === "" || playerTwoChar === "") {
-      console.log("one or more empty input field")
       this.setState(
         { errorMessage: "One or more empty input field(s)" },
         () => {
@@ -32,7 +31,6 @@ class PlayerSelect extends Component {
       return
     }
     if (playerOneChar === playerTwoChar) {
-      console.log("characters cannot be identical")
       this.setState({ errorMessage: "Characters cannot be identical" }, () => {
         setTimeout(() => {
           this.setState({ errorMessage: "" })
@@ -42,6 +40,7 @@ class PlayerSelect extends Component {
     }
 
     this.props.loadDeck(this.state.playerOneChar, this.state.playerTwoChar)
+    this.props.clearBoard()
     this.props.registerPlayer(this.state)
   }
   render() {
