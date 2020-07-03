@@ -30,7 +30,7 @@
   font-weight: bold;
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 720px) {
   .player-select-form {
     margin: 7.5% 0 10%;
   }
